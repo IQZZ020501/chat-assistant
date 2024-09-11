@@ -1,0 +1,28 @@
+{
+  "name": "wechatapis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.11.2",
+    "@types/lru-cache": "^7.10.10",
+    "axios": "^1.7.2",
+    "caseless": "^0.12.0",
+    "lru-cache": "^11.0.1",
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^1.20.2",
+    "wechaty-puppet-wechat": "^1.18.4",
+    "wechaty-puppet-wechat4u": "^1.14.14",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "@types/qrcode-terminal": "^0.12.2"
+  }
+}
