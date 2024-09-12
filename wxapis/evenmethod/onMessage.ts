@@ -15,7 +15,9 @@ export async function onMessage(message: MessageInterface) {
     const messageType = message.type();
     const wechatName = getCache("wechatyName") || "";
     const wechatHandel = getCache("wechatyHandle");
-
+    if (messageType === 0) {
+        return
+    }
     if (roomMessage) {
         await onRoomMethod({
             message,
