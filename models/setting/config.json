@@ -1,7 +1,7 @@
 {
-  "model_name": "",
-  "model_type": "",
-  "api_type": "",
-  "access_token": "",
+  "model_name": "ERNIE",
+  "model_type": "ernie-4.0",
+  "api_type": "aistudio",
+  "access_token": "bfecd0b1b693def3938af941780299b77b60c5fe",
   "temperature": 0.95
 }

@@ -2,18 +2,33 @@ import {MessageInterface} from "wechaty/dist/cjs/src/user-modules/message";
 import {wechat} from "../app";
 import {textMethod} from "../schemas/textMethod";
 import {getCache} from "../utils/cache";
+import {onRoomMethod} from "../common/roomMethod";
 
 export async function onMessage(message: MessageInterface) {
     const sender = message.talker();
+    const roomMessage = message.room();
     await sender.sync();
     const content = message.text();
     const senderName = sender.name();
     const senderHandle = sender.id || "";
     const messageType = message.type();
     const wechatName = getCache("wechatyName");
-    const wechatHandle = getCache("wechatyHandle");
+    const wechatHandel = getCache("wechatyHandle");
 
-
+    if (roomMessage) {
+        await onRoomMethod({
+            message,
+            roomMessage,
+            sender,
+            senderName,
+            senderHandle,
+            wechatName,
+            wechatHandel,
+            messageType,
+            content
+        })
+        return
+    }
     console.log(`
         ==============================================================================
         Message from ${senderName} (Handle: ${senderHandle}, Type: ${messageType})
@@ -29,8 +44,8 @@ export async function onMessage(message: MessageInterface) {
                 content,
                 handle: senderHandle,
                 messageType: messageType,
-                wechatHandel: wechatHandle,
-                wechatName: wechatName
+                wechatHandel: wechatHandel,
+                wechatName: wechatName,
             })
             console.log(`textResponseBool: ${textResponseBool}`)
             break;

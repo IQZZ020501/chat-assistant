@@ -14,6 +14,7 @@ class MessageAPI:
 
     @staticmethod
     async def request_message(request_message: RequestMessage) -> Dict[str, Any]:
+        chat_history = []
         result = await chat.chat_text_result(request_message.content, [])
         if result is None:
             logger.error(f"contact_name: {request_message.contact_name}, error  message：{result}")

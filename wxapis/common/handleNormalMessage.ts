@@ -11,7 +11,7 @@ export async function handleNormalMessage(
     handle: string,
     messageType: number,
     wechatHandel: string,
-    wechatName: string
+    wechatName: string,
 ) {
     try {
         console.log(`

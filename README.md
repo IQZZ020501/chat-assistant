@@ -61,13 +61,16 @@
 ## 使用
 
 ### 启动项目
-
-1. 启动 Python 服务
+1. 需要到星河社区申请access_token并配置在models/setting/config.json中
+    ```bash
+    网址：https://aistudio.baidu.com/index/accessToken
+    ```
+2. 启动 Python 服务
     ```bash
     python api.py
     ```
 
-2. 启动 TypeScript 服务
+3. 启动 TypeScript 服务
     ```bash
     npm start
     ```

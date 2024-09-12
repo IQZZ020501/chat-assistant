@@ -1,6 +1,8 @@
 import {MessageInterface} from "wechaty/dist/cjs/src/user-modules/message";
 import {ContactInterface} from "wechaty/dist/cjs/src/user-modules/contact";
 import {handleNormalMessage} from "../common/handleNormalMessage";
+import {handleRoomMessage} from "../common/handleRoomMessage";
+import {RoomInterface} from "wechaty/dist/cjs/src/user-modules/room";
 
 export interface textMethod {
     message: MessageInterface
@@ -10,6 +12,10 @@ export interface textMethod {
     messageType: number
     wechatHandel: string
     wechatName: string
+}
+
+export interface textRoomMethod extends textMethod {
+    roomMessage: RoomInterface
 }
 
 /**
@@ -22,6 +28,27 @@ export interface textMethod {
  * @param wechatHandel
  * @param wechatName
  */
-export async function textMethod({message, sender, content, handle, messageType, wechatHandel, wechatName}: textMethod) {
+export async function textMethod({
+                                     message,
+                                     sender,
+                                     content,
+                                     handle,
+                                     messageType,
+                                     wechatHandel,
+                                     wechatName,
+                                 }: textMethod) {
     return await handleNormalMessage(message, sender, content, handle, messageType, wechatHandel, wechatName)
+}
+
+export async function textRoomMethod({
+                                         roomMessage,
+                                         message,
+                                         sender,
+                                         content,
+                                         handle,
+                                         messageType,
+                                         wechatHandel,
+                                         wechatName,
+                                     }: textRoomMethod) {
+    return await handleRoomMessage(roomMessage, message, sender, content, handle, messageType, wechatHandel, wechatName)
 }
