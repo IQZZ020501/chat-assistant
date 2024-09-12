@@ -42,7 +42,7 @@ export async function handleNormalMessage(
         console.log(`
         =======================================================
                         handleNormalMessage
-        textResponse: ${response}       type: ${typeof response}
+        textResponse: ${JSON.stringify(response)}       type: ${typeof response}
         =======================================================
         `)
         if (response.code === 200) {

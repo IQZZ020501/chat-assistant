@@ -3,6 +3,7 @@ import {wechat} from "../app";
 import {textMethod} from "../schemas/textMethod";
 import {getCache} from "../utils/cache";
 import {onRoomMethod} from "../common/roomMethod";
+import {fileMethod} from "../schemas/fileMethod";
 
 export async function onMessage(message: MessageInterface) {
     const sender = message.talker();
@@ -12,7 +13,7 @@ export async function onMessage(message: MessageInterface) {
     const senderName = sender.name();
     const senderHandle = sender.id || "";
     const messageType = message.type();
-    const wechatName = getCache("wechatyName");
+    const wechatName = getCache("wechatyName") || "";
     const wechatHandel = getCache("wechatyHandle");
 
     if (roomMessage) {
@@ -50,12 +51,30 @@ export async function onMessage(message: MessageInterface) {
             console.log(`textResponseBool: ${textResponseBool}`)
             break;
         case wechat.Message.Type.Image:
+            await fileMethod({
+                message,
+                sender,
+                contactHandel: senderHandle,
+                contactName: senderName,
+                messageType,
+                wechatHandel,
+                wechatName
+            })
             console.log("Image message received");
             break;
         case wechat.Message.Type.Audio:
             console.log("Audio message received");
             break;
         case wechat.Message.Type.Video:
+            await fileMethod({
+                message,
+                sender,
+                contactHandel: senderHandle,
+                contactName: senderName,
+                messageType,
+                wechatHandel,
+                wechatName
+            })
             console.log("Video message received");
             break;
         case wechat.Message.Type.Url:
